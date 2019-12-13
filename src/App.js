@@ -16,16 +16,9 @@ export default class App extends Component {
   //   return idsAmigos
   // }
   salvandoInformacoes = async () => {
-    let usuario = {
+    let amigoMeu = {
       id: 19935629696, //(xx) x xxxx-xxxx
-      nome: 'Victor2',
-      amigos: [
-        {
-          id: 22222222222,
-          nome: "Joao",
-          idsAmigos: ['123']
-        }
-      ],
+      nome: 'Gabriel',
       idsAmigos: ['123'],
     }
 
@@ -35,8 +28,8 @@ export default class App extends Component {
       amigos: [],
       idsAmigos: [],
     }
-    eu.amigos.push(usuario)
-    eu.idsAmigos.push(usuario.id)
+    eu.amigos.push(amigoMeu)
+    eu.idsAmigos.push(amigoMeu.id)
 
     try {
       await AsyncStorage.setItem('usuarioInfo', JSON.stringify(eu)); // transformando o objeto em string
