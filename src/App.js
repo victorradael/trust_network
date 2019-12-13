@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, AsyncStorage} from 'react-native';
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View, AsyncStorage } from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -12,10 +12,14 @@ const instructions = Platform.select({
 export default class App extends Component {
   armazenadoInformacoes = async () => {
     let usuario = {
-      id:"numerocelular",
-      nome:"Victor",
-      amigos:{
-      }
+      id: 19935629696, //(xx) x xxxx-xxxx
+      nome: 'Victor',
+      amigos: {
+        id: 22222222222,
+        nome: "Joao",
+        idsAmigos: []
+      },
+      idsAmigos:[], 
     }
     try {
       await AsyncStorage.setItem('idusuario', JSON.stringify(usuario)); // transformando o objeto em string
@@ -23,13 +27,16 @@ export default class App extends Component {
       // Error saving data
     }
   };
-  
+
   buscandoInformacoes = async () => {
     try {
       const value = await AsyncStorage.getItem('idusuario');
       if (value !== null) {
         // We have data!!
-        console.log(JSON.parse(value).id); // transformar em objeto novamente
+        console.log(JSON.parse(value).id);
+        console.log(JSON.parse(value).nome);
+        console.log(JSON.parse(value).idsAmigos);
+        console.log(JSON.parse(value).amigos.idsAmigos); // transformar string em objeto novamente
       }
       console.log(value);
     } catch (error) {
@@ -37,13 +44,13 @@ export default class App extends Component {
     }
   };
   render() {
-    this.armazenadoInformacoes()
+    //this.armazenadoInformacoes()
     this.buscandoInformacoes()
-    
+
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.welcome}>Teste da Rede de Fidelidade</Text>
+        <Text style={styles.instructions}>Reestruturando App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
     );
