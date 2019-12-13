@@ -10,19 +10,36 @@ const instructions = Platform.select({
 
 
 export default class App extends Component {
-  armazenadoInformacoes = async () => {
+
+  // busca() {
+  //   const idsAmigos = usuario.getItem(amigos.id)
+  //   return idsAmigos
+  // }
+  salvandoInformacoes = async () => {
     let usuario = {
       id: 19935629696, //(xx) x xxxx-xxxx
-      nome: 'Victor',
-      amigos: {
-        id: 22222222222,
-        nome: "Joao",
-        idsAmigos: []
-      },
-      idsAmigos:[], 
+      nome: 'Victor2',
+      amigos: [
+        {
+          id: 22222222222,
+          nome: "Joao",
+          idsAmigos: ['123']
+        }
+      ],
+      idsAmigos: ['123'],
     }
+
+    let eu = {
+      id: 19935629695, //(xx) x xxxx-xxxx
+      nome: 'Victor',
+      amigos: [],
+      idsAmigos: [],
+    }
+    eu.amigos.push(usuario)
+    eu.idsAmigos.push(usuario.id)
+
     try {
-      await AsyncStorage.setItem('idusuario', JSON.stringify(usuario)); // transformando o objeto em string
+      await AsyncStorage.setItem('usuarioInfo', JSON.stringify(eu)); // transformando o objeto em string
     } catch (error) {
       // Error saving data
     }
@@ -30,21 +47,21 @@ export default class App extends Component {
 
   buscandoInformacoes = async () => {
     try {
-      const value = await AsyncStorage.getItem('idusuario');
+      const value = await AsyncStorage.getItem('usuarioInfo');
       if (value !== null) {
         // We have data!!
-        console.log(JSON.parse(value).id);
+        //console.log(JSON.parse(value).id);
         console.log(JSON.parse(value).nome);
-        console.log(JSON.parse(value).idsAmigos);
-        console.log(JSON.parse(value).amigos.idsAmigos); // transformar string em objeto novamente
+        console.log(`IDs dos meus amigos ${JSON.parse(value).idsAmigos}`);
+        console.log(`IDs dos amigos dos meus amigos ${JSON.parse(value).amigos[0].idsAmigos}`); // transformar string em objeto novamente
       }
-      console.log(value);
+      //console.log(value);
     } catch (error) {
       // Error retrieving data
     }
   };
   render() {
-    //this.armazenadoInformacoes()
+    this.salvandoInformacoes()
     this.buscandoInformacoes()
 
     return (
