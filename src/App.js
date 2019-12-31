@@ -1,13 +1,5 @@
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, AsyncStorage } from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
+import  Component  from 'react';
+import  AsyncStorage  from 'react-native';
 
 export default class App extends Component {
 
@@ -16,20 +8,21 @@ export default class App extends Component {
   //   return idsAmigos
   // }
   salvandoInformacoes = async () => {
-    let amigoMeu = {
+    let amigoDoUsuario = [{
       id: 19935629696, //(xx) x xxxx-xxxx
       nome: 'Gabriel',
-      idsAmigos: ['123'],
-    }
+    },{
+      idsAmigos: [3583540819, 3583426119 ], //Isso vai ter que ser buscado de algum lugar
+    }]
 
-    let eu = {
+    let usuario = {
       id: 19935629695, //(xx) x xxxx-xxxx
       nome: 'Victor',
       amigos: [],
       idsAmigos: [],
     }
-    eu.amigos.push(amigoMeu)
-    eu.idsAmigos.push(amigoMeu.id)
+    usuario.amigos.push(amigoDoUsuario)
+    usuario.idsAmigos.push(amigoDoUsuario.id)
 
     try {
       await AsyncStorage.setItem('usuarioInfo', JSON.stringify(eu)); // transformando o objeto em string
@@ -46,7 +39,7 @@ export default class App extends Component {
         //console.log(JSON.parse(value).id);
         console.log(JSON.parse(value).nome);
         console.log(`IDs dos meus amigos ${JSON.parse(value).idsAmigos}`);
-        console.log(`IDs dos amigos dos meus amigos ${JSON.parse(value).amigos[0].idsAmigos}`); // transformar string em objeto novamente
+        console.log(`IDs dos amigos dos meus amigos ${JSON.parse(value).amigos[0].idsAmigos}`); // transformar string em objeto novamente // percorrer os amigos
       }
       //console.log(value);
     } catch (error) {
@@ -56,33 +49,6 @@ export default class App extends Component {
   render() {
     this.salvandoInformacoes()
     this.buscandoInformacoes()
-
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Teste da Rede de Fidelidade</Text>
-        <Text style={styles.instructions}>Reestruturando App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
