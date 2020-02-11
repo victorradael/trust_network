@@ -13,17 +13,20 @@ function generateToken(params = {}) {
 
 router.post('/register', async (request, response) => {
     const { foneNumber } = request.body;
-
+    console.log({foneNumber})
     try {
-        if (User.findOne({ foneNumber }))
-            return response.status(400).send({ error: 'User already exists' })
+        console.log(request.body)
+        if (await User.findOne({ foneNumber })) {
+            console.log(User)
+            return response.status(400).send({ error: `User already exists` })
+        }
 
         const user = await User.create(request.body)
 
-        return response.send({ 
+        return response.send({
             user,
             token: generateToken({ id: user.id }),
-         })
+        })
     } catch (error) {
         return response.status(400).send({ error: `Registration Failed` })
     }
