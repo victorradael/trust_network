@@ -44,7 +44,7 @@ router.put('/:warningId', async (request, response) => { // Alterar
     const {title, description} = request.body;
     
     try {
-        const warning = await Warning.findByIdAndUpdate(request.params.warningId, {
+        const warning = await Warning.findOneByIdAndUpdate(request.params.warningId, {
             title,
             description,
         }, { new: true });
@@ -60,7 +60,7 @@ router.put('/:warningId', async (request, response) => { // Alterar
 
 router.delete('/:warningId', async (request, response) => { // Deletar
     try {
-        await Warning.findByIdAndRemove(request.params.warningId);
+        await Warning.findOneByIdAndRemove(request.params.warningId);
 
         return response.send('Warning Removed')
     } catch (error) {
