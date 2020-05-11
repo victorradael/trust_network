@@ -37,13 +37,13 @@ function Profile() {
             <Text>Definir de uma vez</Text>
           </View>
         </CardItem>
-        <CardItem>
+        {/* <CardItem>
           <Image source={imgProfile} />
           <View>
             <Text>Trabalho</Text>
             <Text>Definir de uma vez</Text>
           </View>
-        </CardItem>
+        </CardItem> */}
       </Content>
     </>
   );
