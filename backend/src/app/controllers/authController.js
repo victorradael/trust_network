@@ -8,16 +8,16 @@ const router = express.Router();
 function generateToken(params = {}) {
     return jwt.sign(params, authConfig.secret, {
         expiresIn: 86400,
-    })
-}
+    });
+};
 
 router.post('/register', async (request, response) => {
     const { foneNumber } = request.body;
-    console.log({foneNumber})
+    console.log({foneNumber}) // Test ID 
     try {
         console.log(request.body)
         if (await User.findOne({ foneNumber })) {
-            console.log(User)
+            console.log(User) // Usuário registrado
             return response.status(400).send({ error: `User already exists` })
         }
 
@@ -47,6 +47,6 @@ router.post('/authenticate', async (request, response) => {
         user,
         token: generateToken({ id: user.id }),
     });
-})
+});
 
 module.exports = app => app.use('/auth', router);
