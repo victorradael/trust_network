@@ -11,7 +11,7 @@ function generateToken(params = {}) {
     });
 };
 
-router.get('/', async (request, response) => { // Listar todos
+ router.get('/', async (request, response) => { // Listar todos
     try {
         const user = await User.find().populate('user');
 
