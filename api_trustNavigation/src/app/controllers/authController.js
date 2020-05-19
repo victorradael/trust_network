@@ -45,34 +45,34 @@ router.post("/register", async (request, response) => {
   }
 });
 
-router.post("/addfriend", async (request, response) => {
-  const { foneNumber } = request.body;
-  console.log(request.body);
-  console.log({ foneNumber }); // Test ID
-  try {
-    if (await User.findOne({ foneNumber })) {
-      const warning = await Warning.findOneByIdAndUpdate(
-        request.params.warningId,
-        {
-          title,
-          description,
-        },
-        { new: true }
-      );
-      return response.status(400).send({ error: `User already exists` });
-    }
+// router.post("/addfriend", async (request, response) => {
+//   const { foneNumber } = request.body;
+//   console.log(request.body);
+//   console.log({ foneNumber }); // Test ID
+//   try {
+//     if (await User.findOne({ foneNumber })) {
+//       const friend = await Warning.findOneByIdAndUpdate(
+//         foneNumber,
+//         {
+//           title,
+//           description,
+//         },
+//         { new: true }
+//       );
+//       return response.status(200).send({ Message: `Friend Add` });
+//     }
 
-    const user = await User.create(request.body);
-    console.log(User); // Usuário registrado
+//     const user = await User.create(request.body);
+//     console.log(User); // Usuário registrado
 
-    return response.send({
-      user,
-      token: generateToken({ id: user.id }),
-    });
-  } catch (error) {
-    return response.status(400).send({ error: `Registration Failed` });
-  }
-});
+//     return response.send({
+//       user,
+//       token: generateToken({ id: user.id }),
+//     });
+//   } catch (error) {
+//     return response.status(400).send({ error: `Registration Failed` });
+//   }
+// });
 
 router.post("/authenticate", async (request, response) => {
   const { foneNumber } = request.body;
