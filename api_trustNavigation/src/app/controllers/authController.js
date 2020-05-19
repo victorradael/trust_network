@@ -11,6 +11,17 @@ function generateToken(params = {}) {
     });
 };
 
+ router.get('/', async (request, response) => { // Listar todos
+    try {
+        const user = await User.find().populate('user');
+
+        return response.send({ user })
+    } catch (error) {
+        return response.status(400).send({ error: 'Error loading Users' });
+    }
+
+});
+
 router.post('/register', async (request, response) => {
     const { foneNumber } = request.body;
     console.log({foneNumber}) // Test ID 
