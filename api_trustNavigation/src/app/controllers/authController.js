@@ -1,7 +1,7 @@
-const express = require('express')
-const User = require('../models/user')
-const jwt = require('jsonwebtoken')
-const authConfig = require('../../config/auth')
+const express = require("express");
+const User = require("../models/user");
+const jwt = require("jsonwebtoken");
+const { secret } = require("../../config/auth");
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ function generateToken(params = {}) {
     });
 };
 
- router.get('/', async (request, response) => { // Listar todos
+router.get('/', async (request, response) => { // Listar todos
     try {
         const user = await User.find().populate('user');
 
@@ -21,6 +21,8 @@ function generateToken(params = {}) {
     }
 
 });
+
+
 
 router.post('/register', async (request, response) => {
     const { foneNumber } = request.body;
@@ -43,21 +45,21 @@ router.post('/register', async (request, response) => {
     }
 });
 
-router.post('/authenticate', async (request, response) => {
-    const { foneNumber } = request.body;
+router.post("/authenticate", async (request, response) => {
+  const { foneNumber } = request.body;
 
-    const user = await User.findOne({ foneNumber });
+  const user = await User.findOne({ foneNumber });
 
-    if (!user) {
-        return response.status(400).send({ error: 'User not found' })
-    }
+  if (!user) {
+    return response.status(400).send({ error: "User not found" });
+  }
 
-    user.trustIds = undefined;
+  user.trustIds = undefined;
 
-    response.send({
-        user,
-        token: generateToken({ id: user.id }),
-    });
+  response.send({
+    user,
+    token: generateToken({ id: user.id }),
+  });
 });
 
-module.exports = app => app.use('/auth', router);
+module.exports = (app) => app.use("/user", router);
