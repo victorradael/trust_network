@@ -22,28 +22,62 @@ function generateToken(params = {}) {
 
 });
 
-
-
-router.post('/register', async (request, response) => {
-    const { foneNumber } = request.body;
-    console.log({foneNumber}) // Test ID 
-    try {
-        console.log(request.body)
-        if (await User.findOne({ foneNumber })) {
-            console.log(User) // Usuário registrado
-            return response.status(400).send({ error: `User already exists` })
-        }
-
-        const user = await User.create(request.body)
-
-        return response.send({
-            user,
-            token: generateToken({ id: user.id }),
-        })
-    } catch (error) {
-        return response.status(400).send({ error: `Registration Failed` })
+router.post("/register", async (request, response) => {
+  const { foneNumber } = request.body;
+  console.log({ foneNumber }); // Test ID
+  try {
+    console.log(request.body);
+    if (await User.findOne({ foneNumber })) {
+      console.log(User); // Usuário registrado
+      return response.status(400).send({ error: `User already exists` });
     }
+
+    const user = await User.create(request.body);
+
+    return response.send({
+      user,
+      token: generateToken({ id: user.id }),
+    });
+  } catch (error) {
+    return response.status(400).send({ error: `Registration Failed` });
+  }
 });
+
+ router.patch("/:userId/addfriend", async (request, response) => {
+   const {userId} = request.params;
+   const { foneNumber } = request.body;  
+
+   const friend = await User.findOne({ foneNumber })
+   const user = await User.findById(userId)
+   
+   
+   try {
+     if (friend) {
+       console.log(` Nome do Amigo: ${friend.name}`)
+       console.log(` Nome do Usuario: ${user.name}`)
+       const friendExist = await user.friends.find(friendAdd => friendAdd.name === friend.name)
+       
+       if(friendExist){
+        return response.status(400).send({Message: 'friend already exists'})
+       }
+
+       //mudar para aceitar solicitacao de amizade, se necessario
+      //  await friend.friends.push(user)
+      //  await friend.save();
+       await user.friends.push(friend)
+       await user.save();
+
+       console.log(user.friends)
+       
+       return response.status(200).send({ Message: `Friend Add` });
+     }
+   
+   } catch (error) {
+
+     return response.status(400).send({ error: `Registration Failed` });
+   }
+  });
+ 
 
 router.post("/authenticate", async (request, response) => {
   const { foneNumber } = request.body;
@@ -58,7 +92,6 @@ router.post("/authenticate", async (request, response) => {
 
   response.send({
     user,
-    token: generateToken({ id: user.id }),
   });
 });
 
