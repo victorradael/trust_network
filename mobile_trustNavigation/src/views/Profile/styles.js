@@ -1,5 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const Header = styled.View`
   align-items: center;
@@ -8,6 +7,10 @@ export const Header = styled.View`
 export const ProfileImage = styled.Image`
   height: 100px;
   width: 100px;
+  margin-top: 32px;
+  border: 1px solid black;
+
+  border-radius: 50px;
 `;
 
 export const UserNameText = styled.Text`
@@ -37,6 +40,19 @@ export const TextInputStyled = styled.TextInput`
   border: 1px solid black;
 `;
 
-export const CardItem = styled.View`
+export const CardItem = styled.TouchableOpacity`
   border: 1px solid black;
+  padding: 16px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+  border-radius: 8px;
+  align-items: center;
+`;
+
+export const CardImage = styled.Image`
+  height: 50px;
+  width: 50px;
+  margin-right: 16px;
 `;

@@ -1,7 +1,10 @@
 import React from 'react';
 import {View, Image, TouchableOpacity, Text} from 'react-native';
 
-import imgProfile from '../../assets/images/perfil.png';
+import imgProfile from '../../assets/perfil.png';
+import home from '../../assets/house.png';
+import work from '../../assets/tie.png';
+import add from '../../assets/plus.png';
 
 import {
   Header,
@@ -11,6 +14,7 @@ import {
   Content,
   TextInputStyled,
   CardItem,
+  CardImage,
 } from './styles';
 
 function Profile() {
@@ -31,17 +35,23 @@ function Profile() {
       <Content>
         <TextInputStyled placeholder="Para Onde?" />
         <CardItem>
-          <Image source={imgProfile} />
+          <CardImage source={home} />
           <View>
             <Text>Casa</Text>
             <Text>Definir de uma vez</Text>
           </View>
         </CardItem>
         <CardItem>
-          <Image source={imgProfile} />
+          <CardImage source={work} />
           <View>
             <Text>Trabalho</Text>
             <Text>Definir de uma vez</Text>
+          </View>
+        </CardItem>
+        <CardItem>
+          <CardImage source={add} />
+          <View>
+            <Text>Definir Nova Rota</Text>
           </View>
         </CardItem>
       </Content>

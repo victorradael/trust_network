@@ -1,29 +1,18 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {View, StatusBar} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import Routes from './Routes';
 
-import logo from './assets/logo2.png';
 const App = () => {
   return (
-    <>
-      <View style={styles.loadingPage}>
-        <Image source={logo} style={{width: 200, height: 210}} />
+    <NavigationContainer>
+      <StatusBar backgroundColor="#312e38" barStyle="light-content" />
+      <View style={{flex: 1, backgroundColor: '#312e38'}}>
+        <Routes />
       </View>
-    </>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  loadingPage: {
-    backgroundColor: '#0A74C6',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logoText: {
-    fontSize: 30,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-});
 
 export default App;
