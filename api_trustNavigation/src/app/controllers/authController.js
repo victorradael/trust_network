@@ -6,22 +6,20 @@ const { secret } = require("../../config/auth");
 const router = express.Router();
 
 function generateToken(params = {}) {
-  return jwt.sign(params, authConfig.secret, {
-    expiresIn: 86400,
-  });
-}
+    return jwt.sign(params, authConfig.secret, {
+        expiresIn: 86400,
+    });
+};
 
-router.get("/", async (request, response) => {
-  // Listar todos
-  try {
-    const user = await User.find();
-    console.log("ID 0 : Auth Controller");
-    console.log(user);
+ router.get('/', async (request, response) => { // Listar todos
+    try {
+        const user = await User.find().populate('user');
 
-    return response.send({ user });
-  } catch (error) {
-    return response.status(400).send({ error: "Error loading Users" });
-  }
+        return response.send({ user })
+    } catch (error) {
+        return response.status(400).send({ error: 'Error loading Users' });
+    }
+
 });
 
 router.post("/register", async (request, response) => {
@@ -45,34 +43,41 @@ router.post("/register", async (request, response) => {
   }
 });
 
-// router.post("/addfriend", async (request, response) => {
-//   const { foneNumber } = request.body;
-//   console.log(request.body);
-//   console.log({ foneNumber }); // Test ID
-//   try {
-//     if (await User.findOne({ foneNumber })) {
-//       const friend = await Warning.findOneByIdAndUpdate(
-//         foneNumber,
-//         {
-//           title,
-//           description,
-//         },
-//         { new: true }
-//       );
-//       return response.status(200).send({ Message: `Friend Add` });
-//     }
+ router.patch("/:userId/addfriend", async (request, response) => {
+   const {userId} = request.params;
+   const { foneNumber } = request.body;  
 
-//     const user = await User.create(request.body);
-//     console.log(User); // Usuário registrado
+   const friend = await User.findOne({ foneNumber })
+   const user = await User.findById(userId)
+   
+   
+   try {
+     if (friend) {
+       console.log(` Nome do Amigo: ${friend.name}`)
+       console.log(` Nome do Usuario: ${user.name}`)
+       const friendExist = await user.friends.find(friendAdd => friendAdd.name === friend.name)
+       
+       if(friendExist){
+        return response.status(400).send({Message: 'friend already exists'})
+       }
 
-//     return response.send({
-//       user,
-//       token: generateToken({ id: user.id }),
-//     });
-//   } catch (error) {
-//     return response.status(400).send({ error: `Registration Failed` });
-//   }
-// });
+       //mudar para aceitar solicitacao de amizade, se necessario
+      //  await friend.friends.push(user)
+      //  await friend.save();
+       await user.friends.push(friend)
+       await user.save();
+
+       console.log(user.friends)
+       
+       return response.status(200).send({ Message: `Friend Add` });
+     }
+   
+   } catch (error) {
+
+     return response.status(400).send({ error: `Registration Failed` });
+   }
+  });
+ 
 
 router.post("/authenticate", async (request, response) => {
   const { foneNumber } = request.body;
@@ -87,7 +92,6 @@ router.post("/authenticate", async (request, response) => {
 
   response.send({
     user,
-    token: generateToken({ id: user.id }),
   });
 });
 

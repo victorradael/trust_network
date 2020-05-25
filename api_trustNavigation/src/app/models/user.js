@@ -17,8 +17,12 @@ const UserSchema = new mongoose.Schema({
             require: true,
         },
 
-        friendFoneNumber : {
+        foneNumber : {
             type: String,
+            require: true,
+        },
+        friends : {
+            type: Array,
             require: true,
         }
     }],
