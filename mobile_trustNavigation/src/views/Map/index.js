@@ -40,9 +40,25 @@ const Map = () => {
     );
   }, [position]);
 
+  useEffect(() => {
+    Geolocation.onclick(
+      clickPos => {
+        setPosition({
+          ...clickPosition,
+          latitude: clickPos.coords.latitude,
+          longitude: clickPos.coords.longitude,
+        });
+      },
+      error => {
+        console.log(error);
+        // Alert.alert('Houve um erro ao pegar a latitude e longitude.');
+      },
+    );
+  }, [clickPosition]);
+
   return (
     <View style={styles.container}>
-      <MapView
+      <MapView>
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         region={{
@@ -52,70 +68,18 @@ const Map = () => {
           longitudeDelta: position.longitudeDelta,
         }}
       />
-    </View>
+    </MapView>
   );
 };
 
-// const clickCoords = () => map.onclick.getCurrentPosition(
-//   clickPos => {
-//     setPosition({
-//       ...position,
-//       latitude: clickPos.coords.latitude,
-//       longitude: clickPos.coords.longitude,
-//     });
- 
+        <Marker coordinate { ...clickPosition.latitude, clickPosition,longitude}>
 
 
-// getInitialState() {
-//   return {
-//     coordinate: new AnimatedRegion({
-//       latitude: LATITUDE,
-//       longitude: LONGITUDE,
-//     }),
-//   };
-// }
+        </Marker>
 
-// componentWillReceiveProps(nextProps) {
-//   const duration = 500
-
-//   if (this.props.coordinate !== nextProps.coordinate) {
-//     if (Platform.OS === 'android') {
-//       if (this.marker) {
-//         this.marker._component.animateMarkerToCoordinate(
-//           nextProps.coordinate,
-//           duration
-//         );
-//       }
-//     } else {
-//       this.state.coordinate.timing({
-//         ...nextProps.coordinate,
-//         duration
-//       }).start();
-//     }
-//   }
-// }
-
-
-// ----------------xxx-----------------
-
-// render() {
-//   return (
-//     <MapView initialRegion={...}>
-//       <MapView.Marker.Animated
-//         ref={marker => { this.marker = marker }}
-//         coordinate={this.state.coordinate}
-//       />
-//     </MapView>
-//   );
-// }
-
-// const geoReferencePoint = () => {
-// <MapView initialRegion={}>
-// <Marker draggable
-//   coordinate={}
-//   onDragEnd={(e) => this.setState({ x: e.nativeEvent.coordinate })}
-// />
-// </MapView>
-// }  -- aqui seria um marcador que pode ser reposicionado no mapa (ideia inicial)
+      
+    </View>
+  );
+};
 
 export default Map;
