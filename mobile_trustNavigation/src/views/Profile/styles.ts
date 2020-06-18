@@ -8,7 +8,8 @@ export const ProfileImage = styled.Image`
   height: 100px;
   width: 100px;
   margin-top: 32px;
-  border: 1px solid black;
+  border-width: 1px;
+  border-color: red;
 
   border-radius: 50px;
 `;

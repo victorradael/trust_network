@@ -10,6 +10,7 @@ const Tab = createMaterialTopTabNavigator();
 const Routes = () => {
   return (
     <Tab.Navigator
+      initialRouteName="Map"
       tabBarPosition="bottom"
       tabBarOptions={{
         activeTintColor: '#ff3300',

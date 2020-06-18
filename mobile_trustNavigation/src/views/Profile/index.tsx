@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableOpacity, Text} from 'react-native';
 
 import imgProfile from '../../assets/perfil.png';
 import home from '../../assets/house.png';
