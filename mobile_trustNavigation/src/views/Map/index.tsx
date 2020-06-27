@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, KeyboardAvoidingView, TextInput} from 'react-native';
 import geolocation from '@react-native-community/geolocation';
 import MapView, {PROVIDER_GOOGLE, MapEvent, Marker} from 'react-native-maps';
 
-import {Container} from './styles';
+import {Container, TextInputStyled} from './styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  MapTextInput: {
     ...StyleSheet.absoluteFillObject,
   },
 });
@@ -91,6 +94,7 @@ const Map: React.FC = () => {
           />
         </MapView>
       )}
+      <TextInputStyled placeholder="Para Onde?" />
     </Container>
   );
 };

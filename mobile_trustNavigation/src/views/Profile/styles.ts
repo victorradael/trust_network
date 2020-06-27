@@ -7,7 +7,7 @@ export const Header = styled.View`
 export const ProfileImage = styled.Image`
   height: 100px;
   width: 100px;
-  margin-top: 32px;
+  margin-top: 22px;
   border-width: 1px;
   border-color: red;
 
@@ -56,4 +56,32 @@ export const CardImage = styled.Image`
   height: 50px;
   width: 50px;
   margin-right: 16px;
+`;
+
+export const CircleButton = styled.TouchableOpacity`
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 40px;
+  width: 40px;
+  border-width: 1px;
+  border-color: black;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+`;
+
+export const ButonImage = styled.Image`
+  height: 39px;
+  width: 39px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ButonHeader = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
 `;

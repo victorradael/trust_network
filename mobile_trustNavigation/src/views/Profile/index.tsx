@@ -5,6 +5,8 @@ import imgProfile from '../../assets/perfil.png';
 import home from '../../assets/house.png';
 import work from '../../assets/tie.png';
 import add from '../../assets/plus.png';
+import engrenagem from '../../assets/engrenagem.png';
+import editar from '../../assets/editar.png';
 
 import {
   Header,
@@ -15,11 +17,29 @@ import {
   TextInputStyled,
   CardItem,
   CardImage,
+  CircleButton,
+  ButonImage,
+  ButonHeader,
 } from './styles';
 
 function Profile() {
   return (
     <>
+      <ButonHeader>
+        <View>
+          <CircleButton>
+            <ButonImage source={engrenagem} />
+          </CircleButton>
+          {/* eslint-disable-next-line prettier/prettier */}
+          <Text>  Configurações</Text>
+        </View>
+        <View>
+          <CircleButton>
+            <ButonImage source={editar} />
+          </CircleButton>
+          <Text>Editar perfil</Text>
+        </View>
+      </ButonHeader>
       <Header>
         <ProfileImage source={imgProfile} />
         <UserNameText>User Name</UserNameText>
