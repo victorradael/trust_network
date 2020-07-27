@@ -2,34 +2,55 @@ import styled from 'styled-components/native';
 
 export const Header = styled.View`
   align-items: center;
+  width: 100%;
 `;
 
-export const ProfileImage = styled.Image`
-  height: 100px;
-  width: 100px;
-  margin-top: 22px;
-  border-width: 1px;
-  border-color: red;
-
-  border-radius: 50px;
-`;
-
-export const UserNameText = styled.Text`
-  font-size: 34px;
+export const TestHeader = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
 `;
 
 export const NavHeader = styled.View`
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 16px;
-  width: 60%;
+  width: 40%;
+  border: 1px black;
+  border-radius: 10px;
+  padding: 3px;
+  background-color: #fff2;
+`;
+
+export const ProfileImage = styled.Image`
+  height: 100px;
+  width: 100px;
+  margin-top: 10px;
+  border-width: 1px;
+  border-color: #436b89;
+  background-color: #cbd1d5;
+  border-radius: 50px;
+`;
+
+export const UserNameText = styled.Text`
+  font-size: 34px;
+  color: #fff;
+`;
+
+export const NormalText = styled.Text`
+  color: #fff;
 `;
 
 export const Content = styled.View`
   align-items: center;
-  margin-top: 16px;
+  margin-top: 10px;
   height: 100%;
+`;
+
+export const PrimaryBG = styled.ImageBackground`
+  flex: 1;
 `;
 
 export const TextInputStyled = styled.TextInput`
@@ -37,8 +58,8 @@ export const TextInputStyled = styled.TextInput`
   width: 90%;
   padding: 0 16px;
   border-radius: 8px;
-  background: #f4f8f9;
   border: 1px solid black;
+  background-color: #cbd1d5;
 `;
 
 export const CardItem = styled.TouchableOpacity`
@@ -50,6 +71,8 @@ export const CardItem = styled.TouchableOpacity`
   margin-top: 8px;
   border-radius: 8px;
   align-items: center;
+  background-color: #fff2;
+  border: 1px black;
 `;
 
 export const CardImage = styled.Image`
@@ -68,6 +91,7 @@ export const CircleButton = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  background-color: #cbd1d5;
 
   border-radius: 20px;
 `;
@@ -83,5 +107,5 @@ export const ButonHeader = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
+  width: 97%;
 `;

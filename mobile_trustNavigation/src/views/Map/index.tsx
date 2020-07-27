@@ -1,9 +1,37 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, KeyboardAvoidingView, TextInput} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import geolocation from '@react-native-community/geolocation';
 import MapView, {PROVIDER_GOOGLE, MapEvent, Marker} from 'react-native-maps';
+import 'react-native-gesture-handler';
 
-import {Container, TextInputStyled} from './styles';
+import {
+  Container,
+  TextInputStyled,
+  MapContainer,
+  MapWarning,
+  ImageWarning,
+  ButtonWarning,
+  ButtonCancel,
+  ButtonImage,
+  PrimaryBG,
+  WhiteText,
+} from './styles';
+
+import transito from '../../assets/transito.png';
+import policia from '../../assets/policia.png';
+import acidente from '../../assets/acidente.png';
+import perigo from '../../assets/perigo.png';
+import sos from '../../assets/sos.png';
+import interdicao from '../../assets/interdicao.png';
+import close from '../../assets/close.png';
+import background from '../../assets/background.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,17 +55,54 @@ interface CoordProps {
   };
 }
 
+interface IWarningPosition {
+  latitude: number;
+  longitude: number;
+  warningType: string;
+}
+
 const Map: React.FC = () => {
   const [position, setPosition] = useState({
     latitude: 0,
     longitude: 0,
   });
-  const [selectedPosition, setSelectedPosition] = useState<[number, number]>([
-    0,
-    0,
-  ]);
 
-  console.log(selectedPosition[0]);
+  const [warningPosition, setWarningPosition] = useState<IWarningPosition>({
+    latitude: 0,
+    longitude: 0,
+    warningType: '',
+  });
+
+  const [showWarning, setShowWarning] = useState<boolean>(false);
+
+  const warnings = [
+    {
+      nome: 'Transito',
+      image: transito,
+    },
+    {
+      nome: 'Polícia',
+      image: policia,
+    },
+    {
+      nome: 'Acidente',
+      image: acidente,
+    },
+    {
+      nome: 'Perigo',
+      image: perigo,
+    },
+    {
+      nome: 'SOS',
+      image: sos,
+    },
+    {
+      nome: 'Interdição',
+      image: interdicao,
+    },
+  ];
+
+  console.log(warningPosition);
 
   async function mostrarOMapa() {
     try {
@@ -63,10 +128,11 @@ const Map: React.FC = () => {
   }
 
   const handleMapClick = (event: MapEvent) => {
-    setSelectedPosition([
-      event.nativeEvent.coordinate.latitude,
-      event.nativeEvent.coordinate.longitude,
-    ]);
+    setWarningPosition({
+      ...warningPosition,
+      latitude: event.nativeEvent.coordinate.latitude,
+      longitude: event.nativeEvent.coordinate.longitude,
+    });
   };
 
   useEffect(() => {
@@ -75,26 +141,55 @@ const Map: React.FC = () => {
 
   return (
     <Container>
-      {position.latitude !== 0 && (
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={styles.map}
-          region={{
-            latitude: position.latitude,
-            longitude: position.longitude,
-            latitudeDelta: 0.014,
-            longitudeDelta: 0.014,
-          }}
-          onPress={handleMapClick}>
-          <Marker
-            coordinate={{
-              latitude: selectedPosition[0],
-              longitude: selectedPosition[1],
-            }}
-          />
-        </MapView>
-      )}
       <TextInputStyled placeholder="Para Onde?" />
+      {position.latitude !== 0 && (
+        <MapContainer show={showWarning}>
+          <MapView
+            provider={PROVIDER_GOOGLE}
+            style={styles.map}
+            region={{
+              latitude: position.latitude,
+              longitude: position.longitude,
+              latitudeDelta: 0.014,
+              longitudeDelta: 0.014,
+            }}
+            onPress={(e) => {
+              handleMapClick(e);
+              setShowWarning(true);
+            }}
+            // {...console.log('foi')}
+          >
+            <Marker
+              coordinate={{
+                latitude: warningPosition.latitude,
+                longitude: warningPosition.longitude,
+              }}
+            />
+          </MapView>
+        </MapContainer>
+      )}
+      {showWarning && (
+        <PrimaryBG source={background}>
+          <MapWarning horizontal>
+            {warnings.map((warning) => (
+              <ButtonWarning
+                key={warning.nome}
+                onPress={() =>
+                  setWarningPosition({
+                    ...warningPosition,
+                    warningType: warning.nome,
+                  })
+                }>
+                <ImageWarning source={warning.image} />
+                <WhiteText>{warning.nome}</WhiteText>
+              </ButtonWarning>
+            ))}
+            <ButtonCancel onPress={() => setShowWarning(false)}>
+              <ButtonImage source={close} />
+            </ButtonCancel>
+          </MapWarning>
+        </PrimaryBG>
+      )}
     </Container>
   );
 };

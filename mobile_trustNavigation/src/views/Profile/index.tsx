@@ -1,12 +1,15 @@
-import React from 'react';
+/* eslint-disable prettier/prettier */
+import React, {useState} from 'react';
 import {View, TouchableOpacity, Text} from 'react-native';
+import 'react-native-gesture-handler';
 
 import imgProfile from '../../assets/perfil.png';
 import home from '../../assets/house.png';
 import work from '../../assets/tie.png';
 import add from '../../assets/plus.png';
-import engrenagem from '../../assets/engrenagem.png';
+import background from '../../assets/background.png';
 import editar from '../../assets/editar.png';
+import addfriend from '../../assets/addfriend.png';
 
 import {
   Header,
@@ -20,63 +23,89 @@ import {
   CircleButton,
   ButonImage,
   ButonHeader,
+  PrimaryBG,
+  NormalText,
+  TestHeader,
 } from './styles';
 
-function Profile() {
+// const [local, setLocal] = useState({});
+
+const Profile = ({navigation}) => {
+  const [local, setLocal] = useState();
   return (
     <>
-      <ButonHeader>
-        <View>
-          <CircleButton>
-            <ButonImage source={engrenagem} />
-          </CircleButton>
+      <PrimaryBG source={background}>
+        <ButonHeader>
+          {/* <View> */}
+          {/* <CircleButton> */}
+          {/* <ButonImage source={engrenagem} /> */}
+          {/* </CircleButton> */}
           {/* eslint-disable-next-line prettier/prettier */}
-          <Text>  Configurações</Text>
-        </View>
-        <View>
-          <CircleButton>
-            <ButonImage source={editar} />
-          </CircleButton>
-          <Text>Editar perfil</Text>
-        </View>
-      </ButonHeader>
-      <Header>
-        <ProfileImage source={imgProfile} />
-        <UserNameText>User Name</UserNameText>
-        <NavHeader>
-          <TouchableOpacity>
-            <Text>Recente</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>Favoritos</Text>
-          </TouchableOpacity>
-        </NavHeader>
-      </Header>
-      <Content>
-        <TextInputStyled placeholder="Para Onde?" />
-        <CardItem>
-          <CardImage source={home} />
+          {/* <Text>  Configurações</Text> */}
+
+          {/* </View> */}
           <View>
-            <Text>Casa</Text>
-            <Text>Definir de uma vez</Text>
+            <CircleButton onPress={() => navigation.navigate('EditProfile')}>
+              <ButonImage source={editar} />
+            </CircleButton>
+            <NormalText>      Editar</NormalText>
           </View>
-        </CardItem>
-        <CardItem>
-          <CardImage source={work} />
           <View>
-            <Text>Trabalho</Text>
-            <Text>Definir de uma vez</Text>
+            <CircleButton onPress={() => navigation.navigate('AddFriend')}>
+              <ButonImage source={addfriend} />
+            </CircleButton>
+            <NormalText>  Adicionar</NormalText>
           </View>
-        </CardItem>
-        <CardItem>
-          <CardImage source={add} />
-          <View>
-            <Text>Definir Nova Rota</Text>
-          </View>
-        </CardItem>
-      </Content>
+        </ButonHeader>
+        <Header>
+          <ProfileImage source={imgProfile} />
+          <UserNameText>User Name</UserNameText>
+          <TestHeader>
+          <NavHeader>
+            <TouchableOpacity>
+              <NormalText>Recente</NormalText>
+            </TouchableOpacity>
+            </NavHeader>
+            <NavHeader>
+            <TouchableOpacity>
+              <NormalText>Favoritos</NormalText>
+            </TouchableOpacity>
+          </NavHeader>
+          </TestHeader>
+        </Header>
+        <Content>
+          <TextInputStyled
+            placeholder="Para Onde?"
+            onChangeText={(text) => {
+              setLocal({text});
+              console.log({local});
+            }}
+            value={local}
+          />
+          <CardItem>
+            <CardImage source={home} />
+            <View>
+              <NormalText>Casa</NormalText>
+              <NormalText>Definir de uma vez</NormalText>
+            </View>
+          </CardItem>
+          <CardItem>
+            <CardImage source={work} />
+            <View>
+              <NormalText>Trabalho</NormalText>
+              <NormalText>Definir de uma vez</NormalText>
+            </View>
+          </CardItem>
+          <CardItem>
+            <CardImage source={add} />
+            <View>
+              <NormalText>Rota</NormalText>
+              <NormalText>Definir Nova Rota</NormalText>
+            </View>
+          </CardItem>
+        </Content>
+      </PrimaryBG>
     </>
   );
-}
-
+};
 export default Profile;
