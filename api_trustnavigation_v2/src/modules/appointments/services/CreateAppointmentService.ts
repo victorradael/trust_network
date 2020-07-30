@@ -8,6 +8,10 @@ import AppError from '@shared/error/AppError';
 
 interface IRequestDTO {
   user_id: string;
+  category: string;
+  description: string;
+  latitude: number;
+  longitude: number;
   date: Date;
 }
 
@@ -18,7 +22,14 @@ class CreateAppointmentService {
     private appointmentsRepository: IAppointmentsRepository
   ) {}
 
-  public async execute({ user_id, date }: IRequestDTO): Promise<Appointment> {
+  public async execute({
+    user_id,
+    date,
+    category,
+    description,
+    latitude,
+    longitude,
+  }: IRequestDTO): Promise<Appointment> {
     const appointmentDate = startOfHour(date);
 
     if (isBefore(appointmentDate, Date.now())) {
@@ -40,6 +51,10 @@ class CreateAppointmentService {
     }
 
     const appointment = await this.appointmentsRepository.create({
+      category,
+      description,
+      latitude,
+      longitude,
       user_id,
       date: appointmentDate,
     });
