@@ -7,6 +7,7 @@ import Map from '../views/Map';
 import Profile from '../views/Profile';
 import EditProfile from '../views/EditProfile';
 import AddFriend from '../views/AddFriend';
+import SignUp from '../views/SignUp';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -25,7 +26,7 @@ function HomeStack() {
 export default function Routes() {
   return (
     <Tab.Navigator
-      initialRouteName="Profile"
+      initialRouteName="Map"
       tabBarPosition="none"
       tabBarOptions={{
         activeTintColor: '#ff3300',
@@ -34,6 +35,7 @@ export default function Routes() {
       }}>
       <Tab.Screen name="Profile" component={HomeStack} />
       <Tab.Screen name="Map" component={Map} />
+      <Tab.Screen name="SignUp" component={SignUp} />
     </Tab.Navigator>
   );
 }
