@@ -1,43 +1,39 @@
 import styled from 'styled-components/native';
+import {Platform} from 'react-native';
+import {getBottomSpace} from 'react-native-iphone-x-helper';
 
-export const Container = styled.ImageBackground`
-  flex-direction: column;
+export const Container = styled.View`
   flex: 1;
   align-items: center;
+  justify-content: center;
+  padding: 0 30px ${Platform.OS === 'android' ? 160 : 40}px;
 `;
 
-export const ProfileImage = styled.Image`
-  height: 100px;
-  width: 100px;
-  background-color: #cbd1d5;
-  border-radius: 50px;
-  margin-top: 150px;
-  margin-bottom: 20px;
+export const Title = styled.Text`
+  font-family: 'RobotoSlab-Medium';
+  font-size: 24px;
+  color: #f4ede8;
+  margin: 64px 0 24px;
 `;
 
-export const TextInputStyled = styled.TextInput`
-  height: 40px;
-  width: 80%;
-  padding: 0 10px;
-  border-radius: 8px;
-  background-color: #cbd1d5;
-  border: 1px solid black;
-  margin-bottom: 10px;
-`;
+export const BackToSignIn = styled.TouchableOpacity`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #312e38;
+  border-top-width: 1px;
+  border-color: #232129;
+  padding: 16px 0 ${16 + getBottomSpace()}px;
 
-export const CreateButton = styled.TouchableOpacity`
-  width: 150px;
-  height: 40px;
-  border: 1px black;
-  border-radius: 10px;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  padding: 5px;
-  background-color: #fff2;
+  flex-direction: row;
 `;
 
-export const TextStyled = styled.Text`
-  color: #fff;
+export const BackToSignInText = styled.Text`
+  color: #f4ede8;
+  font-family: 'RobotoSlab-Regular';
   font-size: 18px;
+  margin-left: 16px;
 `;
