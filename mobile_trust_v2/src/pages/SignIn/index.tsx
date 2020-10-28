@@ -1,5 +1,6 @@
-import React, {useCallback, useRef} from 'react';
+import React, { useCallback, useRef } from 'react';
 import {
+  Image,
   KeyboardAvoidingView,
   Platform,
   View,
@@ -7,16 +8,17 @@ import {
   TextInput,
   Alert,
 } from 'react-native';
-
-import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 
-import {Form} from '@unform/mobile';
-import {FormHandles} from '@unform/core';
+import { Form } from '@unform/mobile';
+import { FormHandles } from '@unform/core';
 
-import {useAuth} from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth';
 
 import getValidationErrors from '../../utils/getValidationsErrors';
+import logoImg from '../../assets/logo.png';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -40,7 +42,7 @@ const SignIn: React.FC = () => {
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
 
-  const {signIn} = useAuth();
+  const { signIn } = useAuth();
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
@@ -82,13 +84,16 @@ const SignIn: React.FC = () => {
   return (
     <>
       <KeyboardAvoidingView
-        style={{flex: 1}}
+        style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        enabled>
+        enabled
+      >
         <ScrollView
           keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{flex: 1}}>
+          contentContainerStyle={{ flex: 1 }}
+        >
           <Container>
+            <Image source={logoImg} />
             <View>
               <Title>Faça seu login</Title>
             </View>
@@ -121,7 +126,8 @@ const SignIn: React.FC = () => {
               <Button
                 onPress={() => {
                   formRef.current?.submitForm();
-                }}>
+                }}
+              >
                 Entrar
               </Button>
             </Form>
@@ -134,6 +140,7 @@ const SignIn: React.FC = () => {
       </KeyboardAvoidingView>
 
       <CreateAccountButton onPress={() => navigation.navigate('SignUp')}>
+        <Icon name="log-in" size={20} color="#ff9000" />
         <CreateAccountButtonText>Criar uma conta</CreateAccountButtonText>
       </CreateAccountButton>
     </>
