@@ -1,27 +1,29 @@
-import React, { useCallback, useRef } from 'react';
+import React, {useCallback, useContext, useRef} from 'react';
 import {
-  Image,
+  StyleSheet,
   KeyboardAvoidingView,
   Platform,
   View,
   ScrollView,
   TextInput,
   Alert,
+  Image,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import { useNavigation } from '@react-navigation/native';
+
+import {useNavigation} from '@react-navigation/native';
 import * as Yup from 'yup';
+//Importação de todos os métodos dentro da pasta yup para a variável yup.
+import {Form} from '@unform/mobile';
+import {FormHandles} from '@unform/core';
 
-import { Form } from '@unform/mobile';
-import { FormHandles } from '@unform/core';
-
-import { useAuth } from '../../hooks/auth';
+import {AuthProvider, useAuth} from '../../hooks/auth';
 
 import getValidationErrors from '../../utils/getValidationsErrors';
-import logoImg from '../../assets/logo.png';
+import logoPreto from '../../assets/logoPreto.png';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+//Importação dos botões e da caixa de texto padrão do aplicativo.
 
 import {
   Container,
@@ -30,19 +32,29 @@ import {
   ForgotPasswordText,
   CreateAccountButton,
   CreateAccountButtonText,
+  ImageContainer,
 } from './styles';
+//Importação da estilização dos componentes usados na tela de Sign In
 
 interface SignInFormData {
   email: string;
   password: string;
 }
 
+
+const ImageStyle = StyleSheet.create({
+  logo:{
+    width: 300,
+    resizeMode:'contain'
+  }
+});
+
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
 
-  const { signIn } = useAuth();
+  const {signIn, user} = useAuth();
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
@@ -50,21 +62,27 @@ const SignIn: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          email: Yup.string()
-            .required('Digite seu e-mail')
-            .email(' Digite e-mail valido.'),
-          password: Yup.string().required('Digite sua senha.'),
+        //Cria uma constante do tipo objeto que tem a forma de um "yup".
+        //yup é uma instância que obriga o usuário a colocar o os registros certos.
+        //Biblioteca para validação de dados.
+          email: Yup.string() // Obriga a ser string.
+            .required('Digite seu e-mail') //É obrigado a colocar um email.
+            .email(' Digite e-mail valido.'), //Especificação que deve ser um email.
+          password: Yup.string().required('Digite sua senha.'), //Obriga a ser uma string.
+          //e é obrigado a colocar uma senha.
         });
-
-        await schema.validate(data, {
-          abortEarly: false,
-        });
-
-        await signIn({
-          email: data.email,
+        
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+      
+      await signIn({
+        email: data.email,
           password: data.password,
         });
-      } catch (error) {
+      } 
+      
+      catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
 
@@ -84,19 +102,28 @@ const SignIn: React.FC = () => {
   return (
     <>
       <KeyboardAvoidingView
-        style={{ flex: 1 }}
+        style={{flex: 1}}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        enabled
-      >
+        enabled>
         <ScrollView
           keyboardShouldPersistTaps="handled"
-          contentContainerStyle={{ flex: 1 }}
-        >
-          <Container>
-            <Image source={logoImg} />
+          contentContainerStyle={{flex: 1}}>
+
+          <ImageContainer>
             <View>
-              <Title>Faça seu login</Title>
+              <Image
+                source = {logoPreto}
+                style = {ImageStyle.logo}
+              />
             </View>
+          </ImageContainer>
+
+          <Container>
+
+            <View> 
+            <Title>Faça seu login</Title>
+            </View>
+
             <Form ref={formRef} onSubmit={handleSignIn}>
               <Input
                 autoCorrect={false}
@@ -123,16 +150,13 @@ const SignIn: React.FC = () => {
                 }}
               />
 
-              <Button
-                onPress={() => {
-                  formRef.current?.submitForm();
-                }}
-              >
+              <Button onPress={() => navigation.navigate('Profile')}>
                 Entrar
-              </Button>
+              </Button>   
+
             </Form>
 
-            <ForgotPassword onPress={() => {}}>
+            <ForgotPassword onPress={() => navigation.navigate('ForgotPassword')}>
               <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
             </ForgotPassword>
           </Container>
@@ -140,7 +164,6 @@ const SignIn: React.FC = () => {
       </KeyboardAvoidingView>
 
       <CreateAccountButton onPress={() => navigation.navigate('SignUp')}>
-        <Icon name="log-in" size={20} color="#ff9000" />
         <CreateAccountButtonText>Criar uma conta</CreateAccountButtonText>
       </CreateAccountButton>
     </>

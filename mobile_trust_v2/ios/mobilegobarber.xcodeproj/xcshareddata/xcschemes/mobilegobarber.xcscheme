@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "mobilegobarber.app"
-               BlueprintName = "mobilegobarber"
-               ReferencedContainer = "container:mobilegobarber.xcodeproj">
+               BuildableName = "mobiletrustnav.app"
+               BlueprintName = "mobiletrustnav"
+               ReferencedContainer = "container:mobiletrustnav.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "mobilegobarberTests.xctest"
-               BlueprintName = "mobilegobarberTests"
-               ReferencedContainer = "container:mobilegobarber.xcodeproj">
+               BuildableName = "mobiletrustnavTests.xctest"
+               BlueprintName = "mobiletrustnavTests"
+               ReferencedContainer = "container:mobiletrustnav.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "mobilegobarber.app"
-            BlueprintName = "mobilegobarber"
-            ReferencedContainer = "container:mobilegobarber.xcodeproj">
+            BuildableName = "mobiletrustnav.app"
+            BlueprintName = "mobiletrustnav"
+            ReferencedContainer = "container:mobiletrustnav.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "mobilegobarber.app"
-            BlueprintName = "mobilegobarber"
-            ReferencedContainer = "container:mobilegobarber.xcodeproj">
+            BuildableName = "mobiletrustnav.app"
+            BlueprintName = "mobiletrustnav"
+            ReferencedContainer = "container:mobiletrustnav.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

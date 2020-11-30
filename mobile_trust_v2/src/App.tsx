@@ -3,19 +3,19 @@ import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-import AppProvider from './hooks';
+import { AuthProvider} from './hooks/auth';
 
 import Routes from './routes';
 
 const App: React.FC = () => {
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor="#312e38" barStyle="light-content" />
-      <AppProvider>
-        <View style={{ flex: 1, backgroundColor: '#312e38' }}>
+      <StatusBar backgroundColor="#000000" barStyle="light-content" />
+      <AuthProvider>
+        <View style={{ flex: 1, backgroundColor: '000000' }}>
           <Routes />
         </View>
-      </AppProvider>
+      </AuthProvider>
     </NavigationContainer>
   );
 };

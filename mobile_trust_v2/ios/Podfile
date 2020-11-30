@@ -44,8 +44,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'mobilegobarber' do
-  # Pods for mobilegobarber
+target 'mobiletrustnav' do
+  # Pods for mobiletrustnav
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -77,7 +77,7 @@ target 'mobilegobarber' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'mobilegobarberTests' do
+  target 'mobiletrustnav' do
     inherit! :complete
     # Pods for testing
   end
@@ -94,10 +94,10 @@ target 'mobilegobarber' do
   end
 end
 
-target 'mobilegobarber-tvOS' do
-  # Pods for mobilegobarber-tvOS
+target 'mobiletrustnav-tvOS' do
+  # Pods for mobiletrustnav-tvOS
 
-  target 'mobilegobarber-tvOSTests' do
+  target 'mobiletrustnav-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

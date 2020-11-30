@@ -1,12 +1,21 @@
 import styled from 'styled-components/native';
-import { Platform } from 'react-native';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
+import {Platform, StyleSheet} from 'react-native';
+import {getBottomSpace} from 'react-native-iphone-x-helper';
 
 export const Container = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justifyContent: flex-end;
   padding: 0 30px ${Platform.OS === 'android' ? 160 : 40}px;
+  background: #AF0000;
+`;
+
+export const ImageContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justifyContent: center;
+  padding: 0 30px ${Platform.OS === 'android' ? 160 : 40}px;
+  background: #AF0000;
 `;
 
 export const Title = styled.Text`
@@ -17,7 +26,7 @@ export const Title = styled.Text`
 `;
 
 export const ForgotPassword = styled.TouchableOpacity`
-  margin-top: 24px;
+  margin-top: 16px;
 `;
 
 export const ForgotPasswordText = styled.Text`
@@ -31,9 +40,9 @@ export const CreateAccountButton = styled.TouchableOpacity`
   left: 0;
   right: 0;
   bottom: 0;
-  background: #312e38;
+  background: #000000;
   border-top-width: 1px;
-  border-color: #232129;
+  border-color: #f4ede8;
   padding: 16px 0 ${16 + getBottomSpace()}px;
 
   justify-content: center;
@@ -42,8 +51,9 @@ export const CreateAccountButton = styled.TouchableOpacity`
 `;
 
 export const CreateAccountButtonText = styled.Text`
-  color: #ff9000;
+  color: #f4ede8;
   font-family: 'RobotoSlab-Regular';
-  font-size: 18px;
-  margin-left: 16px;
+  font-size: 20px;
 `;
+
+//Arquivo responsável pela estilização dos componentes usados no index do SignIn/index.
