@@ -86,7 +86,7 @@ const ForgotPassword: React.FC = () => {
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{flex: 1}}>
           <BtnView>
-          <ButtonBack>
+          <ButtonBack onPress ={navigation.goBack}>
             <ButtonImage source={voltar} />
           </ButtonBack>
         </BtnView>

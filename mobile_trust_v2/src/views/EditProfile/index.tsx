@@ -1,24 +1,22 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity, Text, ScrollView} from 'react-native';
 import 'react-native-gesture-handler';
-
+import {useNavigation} from '@react-navigation/native';
 import imgProfile from '../../assets/perfil.png';
 import voltar from '../../assets/voltar.png';
-import background from '../../assets/background.png';
-
+import Button from '../../components/Button';
 import {
   EditBackg,
   ProfileImage,
   Header,
   TextInputStyled,
-  ColumnView,
+  AdressTextInputStyled,
+  AdressView,
   StyledText,
   ButtonImage,
   ButtonBack,
   BtnView,
   PrimaryBG,
-  SaveButton,
-  ScrollBackg,
+  SaveView
 } from './styles';
 
 interface IUserInfo {
@@ -34,134 +32,100 @@ interface IUserInfo {
   rua: string;
 }
 
-const EditProfile: React.FC = ({navigation}) => {
+const EditProfile: React.FC = () => {
   const [userInfo, setUserInfo] = useState<IUserInfo>({});
-
+  const navigation = useNavigation();
   return (
     <>
-      <PrimaryBG source={background}>
         <BtnView>
-          <ButtonBack onPress={() => navigation.navigate('Profile')}>
+          <ButtonBack onPress ={navigation.goBack}>
             <ButtonImage source={voltar} />
           </ButtonBack>
         </BtnView>
-        <Header>
-          <ProfileImage source={imgProfile} />
-        </Header>
-
-        <EditBackg>
-          <StyledText>Dados Pessoais</StyledText>
-        </EditBackg>
-        <EditBackg>
-          <ColumnView>
+        <PrimaryBG>
+          <Header>
+            <ProfileImage source={imgProfile} />
+          </Header>
+          <EditBackg>
+            <StyledText>Dados Pessoais</StyledText>
+          </EditBackg>
+          <EditBackg>
+              <TextInputStyled
+                placeholder="Nome"
+                onChangeText={(text) => {
+                  setUserInfo({...userInfo, nome: text});
+                }}
+                value={userInfo.nome}
+              />
+          </EditBackg>
+          <EditBackg>
             <TextInputStyled
-              placeholder="Nome"
+              keyboardType="email-address"
+              placeholder="E-mail"
               onChangeText={(text) => {
-                setUserInfo({...userInfo, nome: text});
+                setUserInfo({...userInfo, email: text});
               }}
-              value={userInfo.nome}
+              value={userInfo.email}
             />
-          </ColumnView>
-          <ColumnView>
-            <TextInputStyled
-              placeholder="Sobrenome"
-              onChangeText={(text) => {
-                setUserInfo({...userInfo, sobrenome: text});
-              }}
-              value={userInfo.sobrenome}
-            />
-          </ColumnView>
-        </EditBackg>
-        <EditBackg>
-          <TextInputStyled
-            keyboardType="email-address"
-            placeholder="E-mail"
-            onChangeText={(text) => {
-              setUserInfo({...userInfo, email: text});
-            }}
-            value={userInfo.email}
-          />
-        </EditBackg>
-        <EditBackg>
-          <ColumnView>
-            <TextInputStyled
-              placeholder="Telefone"
-              onChangeText={(text) => {
-                setUserInfo({...userInfo, telefone: text});
-              }}
-              value={userInfo.telefone}
-            />
-          </ColumnView>
-          <ColumnView>
-            <TextInputStyled
-              placeholder="Apelido"
-              onChangeText={(text) => {
-                setUserInfo({...userInfo, apelido: text});
-              }}
-              value={userInfo.apelido}
-            />
-          </ColumnView>
-        </EditBackg>
-        <EditBackg />
-        <EditBackg>
-          <StyledText>Endereço</StyledText>
-        </EditBackg>
-        <EditBackg>
-          <ColumnView>
-            <TextInputStyled
+          </EditBackg>
+          <EditBackg>
+              <TextInputStyled
+                placeholder="Telefone"
+                onChangeText={(text) => {
+                  setUserInfo({...userInfo, telefone: text});
+                }}
+                value={userInfo.telefone}
+              />
+          </EditBackg>
+          <EditBackg />
+          <EditBackg>
+            <StyledText>Endereço</StyledText>
+          </EditBackg>
+            <AdressView>
+            <AdressTextInputStyled
               placeholder="Cidade"
               onChangeText={(text) => {
                 setUserInfo({...userInfo, cidade: text});
               }}
               value={userInfo.cidade}
             />
-          </ColumnView>
-          <ColumnView>
-            <TextInputStyled
-              placeholder="Estado"
-              onChangeText={(text) => {
-                setUserInfo({...userInfo, estado: text});
-              }}
-              value={userInfo.estado}
-            />
-          </ColumnView>
-        </EditBackg>
-        <EditBackg>
-          <TextInputStyled
-            placeholder="Rua"
-            onChangeText={(text) => {
-              setUserInfo({...userInfo, rua: text});
-            }}
-            value={userInfo.rua}
-          />
-        </EditBackg>
-        <EditBackg>
-          <ColumnView>
-            <TextInputStyled
+            <AdressTextInputStyled
+                placeholder="Estado"
+                onChangeText={(text) => {
+                  setUserInfo({...userInfo, estado: text});
+                }}
+                value={userInfo.estado}
+                />
+            </AdressView>
+            <EditBackg>
+              <TextInputStyled
+                placeholder="Rua"
+                onChangeText={(text) => {
+                  setUserInfo({...userInfo, rua: text});
+                }}
+                value={userInfo.rua}
+                />
+            </EditBackg>
+            <AdressView>
+            <AdressTextInputStyled
               placeholder="Bairro"
               onChangeText={(text) => {
                 setUserInfo({...userInfo, bairro: text});
               }}
               value={userInfo.bairro}
             />
-          </ColumnView>
-          <ColumnView>
-            <TextInputStyled
-              keyboardType="number-pad"
-              placeholder="Número"
-              onChangeText={(text) => {
-                setUserInfo({...userInfo, numero: text});
-              }}
-              value={userInfo.numero}
-            />
-          </ColumnView>
-        </EditBackg>
-        <Header>
-          <SaveButton>
-            <StyledText>Salvar</StyledText>
-          </SaveButton>
-        </Header>
-      </PrimaryBG>
+            <AdressTextInputStyled
+                placeholder="Número"
+                onChangeText={(text) => {
+                  setUserInfo({...userInfo, rua: text});
+                }}
+                value={userInfo.rua}
+              />
+            </AdressView>
+            <SaveView>
+              <Button>Salvar</Button>
+            </SaveView>
+        </PrimaryBG>
     </>
   );
 };

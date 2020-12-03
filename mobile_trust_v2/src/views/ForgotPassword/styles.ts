@@ -11,11 +11,10 @@ export const Container = styled.View`
 `;
 
 export const BtnView = styled.View`
-  height: 10px;
+  height: 75px;
   width: 100%;
   justify-content: space-between;
-  margin-left: 10px;
-  margin-top: 10px;
+  background-color: #AF0000;
 `;
 
 export const ButtonImage = styled.Image`
@@ -31,6 +30,8 @@ export const ButtonBack = styled.TouchableOpacity`
   align-items: center;
   background-color: #cbd1d5;
   border: 1px solid black;
+  margin-top: 16px;
+  margin-left: 16px;
 `;
 
 export const Title = styled.Text`

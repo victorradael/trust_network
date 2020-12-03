@@ -14,17 +14,16 @@ import addfriend from '../../assets/addfriend.png';
 
 import {
   Header,
-  EditProfileText,
-  AddText,
+  CircleButtonView,
   NavHeaderText,
   ProfileImage,
   UserNameText,
   NavHeader,
   Content,
-  TextInputStyled,
   CardItem,
   CardImage,
-  CircleButton,
+  AddCircleButton,
+  EditCircleButton,
   ButonImage,
   ButonHeader,
   PrimaryBG,
@@ -42,44 +41,32 @@ const Profile: React.FC = () => {
       <PrimaryBG>
         <ButonHeader>
           
-          <View>
-            <CircleButton onPress={() => navigation.navigate('EditProfile')}>
+          <CircleButtonView>
+            <EditCircleButton onPress={() => navigation.navigate('EditProfile')}>
               <ButonImage source={editar} />
-            </CircleButton>
-            <EditProfileText>Editar Perfil</EditProfileText>
-          </View>
-
-          <View>
-            <CircleButton onPress={() => navigation.navigate('AddFriend')}>
+            </EditCircleButton>
+            <AddCircleButton onPress={() => navigation.navigate('AddFriend')}>
               <ButonImage source={addfriend} />
-            </CircleButton>
-            <AddText>Adicionar</AddText>
-          </View>
+            </AddCircleButton>
+          </CircleButtonView>
         </ButonHeader>
         <Header>
           <ProfileImage source={imgProfile} />
           <UserNameText>User Name</UserNameText>
           <TestHeader>
           <NavHeader>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Recents')}>
               <NavHeaderText>Recentes</NavHeaderText>
             </TouchableOpacity>
             </NavHeader>
             <NavHeader>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Favorites')}>
               <NavHeaderText>Favoritos</NavHeaderText>
             </TouchableOpacity>
           </NavHeader>
           </TestHeader>
         </Header>
         <Content>
-          <TextInputStyled
-            placeholder="Para Onde?"
-            onChangeText={(text) => {
-              console.log({local});
-            }}
-            value={local}
-          />
           <CardItem>
             <CardImage source={home} />
             <View>
@@ -97,8 +84,7 @@ const Profile: React.FC = () => {
           <CardItem>
             <CardImage source={add} />
             <View>
-              <NormalText>Rota</NormalText>
-              <NormalText>Definir Nova Rota</NormalText>
+              <NormalText>Iniciar nova rota</NormalText>
             </View>
           </CardItem>
         </Content>

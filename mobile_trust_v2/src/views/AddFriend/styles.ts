@@ -1,43 +1,21 @@
 import styled from 'styled-components/native';
+import {Platform} from 'react-native';
+import {getBottomSpace} from 'react-native-iphone-x-helper';
+import PhoneInput from "react-native-phone-number-input"
 
-export const Header = styled.View`
+export const Container = styled.View`
+  flex: 1;
   align-items: center;
-`;
-
-export const TextBackg = styled.View`
-  margin-top: 150px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-`;
-
-export const InputBackg = styled.View`
-  margin-top: 40px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-`;
-
-export const TextInputStyled = styled.TextInput`
-  height: 40px;
-  width: 80%;
-  padding: 0 10px;
-  border-radius: 10px;
-  background-color: #cbd1d5;
-  border: 1px solid black;
-`;
-
-export const StyledText = styled.Text`
-  font-size: 20px;
-  align-items: center;
-  color: #fff;
+  justify-content: center;
+  background: #AF0000
+  padding: 0 30px ${Platform.OS === 'android' ? 160 : 40}px;
 `;
 
 export const BtnView = styled.View`
-  height: 1px;
+  height: 75px;
   width: 100%;
-  margin-left: 10px;
-  margin-top: 5px;
+  justify-content: space-between;
+  background-color: #AF0000;
 `;
 
 export const ButtonImage = styled.Image`
@@ -53,20 +31,13 @@ export const ButtonBack = styled.TouchableOpacity`
   align-items: center;
   background-color: #cbd1d5;
   border: 1px solid black;
+  margin-top: 16px;
+  margin-left: 16px;
 `;
 
-export const AddButton = styled.TouchableOpacity`
-  width: 150px;
-  height: 40px;
-  border: 1px black;
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  padding: 5px;
-  background-color: #fff2;
-`;
-
-export const PrimaryBG = styled.ImageBackground`
-  flex: 1;
+export const Title = styled.Text`
+  font-family: 'RobotoSlab-Medium';
+  font-size: 24px;
+  color: #f4ede8;
+  margin: 64px 0 24px;
 `;

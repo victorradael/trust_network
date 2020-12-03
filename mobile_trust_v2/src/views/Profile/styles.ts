@@ -44,18 +44,6 @@ export const NormalText = styled.Text`
   font-size: 16px;
 `;
 
-export const EditProfileText = styled.Text`
-  color: #000000;
-  font-size: 16px;
-  margin-left: 8px;
-`;
-
-export const AddText = styled.Text`
-  color: #000000;
-  font-size: 16px;
-  margin-right: 8px;
-`;
-
 export const NavHeaderText = styled.Text`
   color: #FFFFFF;
   font-size: 16px;
@@ -87,11 +75,11 @@ export const CardItem = styled.TouchableOpacity`
   width: 90%;
   display: flex;
   flex-direction: row;
-  margin-top: 8px;
+  margin-top: 16px;
   border-radius: 8px;
   align-items: center;
   background-color: #f4ede8;
-  border: 1px black;
+  border: 2px black;
 `;
 
 export const CardImage = styled.Image`
@@ -100,24 +88,31 @@ export const CardImage = styled.Image`
   margin-right: 16px;
 `;
 
-export const CircleButton = styled.TouchableOpacity`
-  margin-top: 16px;
-  margin-left: 20px;
+export const AddCircleButton = styled.TouchableOpacity`
+  margin-top: 24px;
+  margin-right: 24px;
   height: 48px;
   width: 48px;
   border-width: 2px;
   border-color: #000000;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   background-color: #f4ede8;
+  border-radius: 24px;
+`;
 
+export const EditCircleButton = styled.TouchableOpacity`
+  margin-top: 24px;
+  margin-left: 24px;
+  height: 48px;
+  width: 48px;
+  border-width: 2px;
+  border-color: #000000;
+  background-color: #f4ede8;
   border-radius: 24px;
 `;
 
 export const ButonImage = styled.Image`
-  height: 39px;
-  width: 39px;
+  height: 40px;
+  width: 40px;
   align-items: center;
   justify-content: center;
 `;
@@ -125,6 +120,15 @@ export const ButonImage = styled.Image`
 export const ButonHeader = styled.View`
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  width: 97%;
+  width: 100%;
 `;
+
+export const CircleButtonView = styled.View`
+  height: 75px;
+  width: 100%;
+  background-color: #AF0000;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+

@@ -1,27 +1,31 @@
 import styled from 'styled-components/native';
 
 export const EditBackg = styled.View`
-  margin-top: 10px;
-  margin-left: 10px;
+  width: 100%;
+  margin-top: 8px;
   flex-direction: row;
   justify-content: space-around;
 `;
-
-export const ScrollBackg = styled.ScrollView``;
 
 export const ProfileImage = styled.Image`
   height: 100px;
   width: 100px;
   margin-top: 10px;
-  border-width: 1px;
-  border-color: #436b89;
+  border-width: 2px;
+  border-color: #000000;
   background-color: #cbd1d5;
   border-radius: 50px;
+  background-color: #FFF;
 `;
 
 export const Header = styled.View`
   align-items: center;
-  margin-top: 20px;
+`;
+
+export const SaveView = styled.View`
+  align-items: center;
+  margin-top: 16px;
+  width: 80%;
 `;
 
 export const TextInputStyled = styled.TextInput`
@@ -30,21 +34,23 @@ export const TextInputStyled = styled.TextInput`
   padding: 0 10px;
   border-radius: 8px;
   background-color: #cbd1d5;
-  border: 1px solid black;
+  border: 2px solid black;
 `;
 
-export const ColumnView = styled.View`
+export const AdressTextInputStyled = styled.TextInput`
   height: 40px;
-  width: 40%;
-  align-items: center;
+  width: 45%;
+  padding: 0 10px;
+  border-radius: 8px;
+  background-color: #cbd1d5;
+  border: 2px solid black;
 `;
 
-export const BtnView = styled.View`
-  height: 10px;
-  width: 100%;
+export const AdressView = styled.View`
+  width: 80%;
+  margin-top: 8px;
+  flex-direction: row;
   justify-content: space-between;
-  margin-left: 10px;
-  margin-top: 10px;
 `;
 
 export const StyledText = styled.Text`
@@ -52,21 +58,10 @@ export const StyledText = styled.Text`
   color: #fff;
 `;
 
-export const ButtonImage = styled.Image`
-  height: 40px;
-  width: 40px;
-`;
-
-export const SaveButton = styled.TouchableOpacity`
-  width: 150px;
-  height: 40px;
-  border: 1px black;
-  border-radius: 10px;
-  justify-content: center;
+export const PrimaryBG = styled.ImageBackground`
+  flex: 1;
+  background-color: #AF0000;
   align-items: center;
-  border: 1px solid black;
-  padding: 5px;
-  background-color: #fff2;
 `;
 
 export const ButtonBack = styled.TouchableOpacity`
@@ -77,8 +72,17 @@ export const ButtonBack = styled.TouchableOpacity`
   align-items: center;
   background-color: #cbd1d5;
   border: 1px solid black;
+  margin-top: 16px;
+  margin-left: 16px;
 `;
 
-export const PrimaryBG = styled.ImageBackground`
-  flex: 1;
+export const ButtonImage = styled.Image`
+  height: 40px;
+  width: 40px;
+`;
+
+export const BtnView = styled.View`
+  height: 57px;
+  width: 100%;
+  background-color: #AF0000;
 `;

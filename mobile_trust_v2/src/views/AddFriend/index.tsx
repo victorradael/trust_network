@@ -1,57 +1,46 @@
-import React, {useState} from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {KeyboardAvoidingView, Platform, TextInput} from 'react-native';
 
-import background from '../../assets/background.png';
+
+import {Form} from '@unform/mobile';
+import {FormHandles} from '@unform/core';
+
 import {useNavigation} from '@react-navigation/native';
 
+import Button from '../../components/Button';
+
+import PhoneInput from "react-native-phone-number-input"
+
 import {
-  Header,
-  TextInputStyled,
-  StyledText,
-  ButtonImage,
-  ButtonBack,
   BtnView,
-  PrimaryBG,
-  TextBackg,
-  InputBackg,
-  AddButton,
+  ButtonBack,
+  ButtonImage,
+  Container,
+  Title,
 } from './styles';
 
 import voltar from '../../assets/voltar.png';
 
 const AddFriend: React.FC = () => {
   const navigation = useNavigation();
-  const [numAmigo, setNumAmigo] = useState();
   return (
     <>
-      <PrimaryBG source={background}>
-        <BtnView>
-          <ButtonBack onPress={() => navigation.navigate('Profile')}>
-            <ButtonImage source={voltar} />
-          </ButtonBack>
-        </BtnView>
-        <TextBackg>
-          <Header>
-            <StyledText>
-              Insira o número de telefone a ser adicionado
-            </StyledText>
-          </Header>
-        </TextBackg>
-        <InputBackg>
-          <TextInputStyled
-            keyboardType="phone-pad"
-            onChangeText={(text) => {
-            }}
-            value={numAmigo}
-          />
-        </InputBackg>
-
-        <TextBackg>
-          <AddButton>
-            <StyledText>Adicionar</StyledText>
-          </AddButton>
-        </TextBackg>
-      </PrimaryBG>
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        enabled>
+            <BtnView>
+              <ButtonBack onPress ={navigation.goBack}>
+                <ButtonImage source={voltar} />
+              </ButtonBack>
+            </BtnView>
+          <Container>
+            <Title>Adicione o número de telefone</Title>
+            <PhoneInput></PhoneInput>
+            <Button>Adicionar</Button>
+          </Container>
+      </KeyboardAvoidingView>
+      
     </>
   );
 };

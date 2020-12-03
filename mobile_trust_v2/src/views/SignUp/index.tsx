@@ -18,12 +18,18 @@ import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
 import logoPreto from '../../assets/logoPreto.png';
+import voltar from '../../assets/voltar.png';
 import api from '../../services/api';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import {Container, Title, ImageContainer} from './styles';
+import {Container, 
+  Title, 
+  ImageContainer, 
+  ButtonBack, 
+  ButtonImage,
+  BtnView}  from './styles';
 
 interface SignUpFormData {
   name: string;
@@ -97,14 +103,20 @@ const SignUp: React.FC = () => {
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{flex: 1}}>
 
-          <ImageContainer>
-            <View>
-              <Image
-                source = {logoPreto}
-                style = {ImageStyle.logo}
-              />
-            </View>
-          </ImageContainer>
+        <BtnView>
+          <ButtonBack onPress ={navigation.goBack}>
+            <ButtonImage source={voltar} />
+          </ButtonBack>
+        </BtnView>
+
+            <ImageContainer>
+                 <View>
+                    <Image
+                    source = {logoPreto}
+                    style = {ImageStyle.logo}
+                    />
+                  </View>
+            </ImageContainer>
 
           <Container>
             <View>
